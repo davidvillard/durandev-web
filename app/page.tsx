@@ -11,7 +11,7 @@ const jsonLd = {
   description: 'Páginas web, tiendas online, SEO y mantenimiento web para negocios de Vigo y Galicia.',
   areaServed: [{ '@type': 'City', name: 'Vigo' }, { '@type': 'AdministrativeArea', name: 'Galicia' }],
   address: { '@type': 'PostalAddress', addressLocality: 'Vigo', addressRegion: 'Galicia', addressCountry: 'ES' },
-  sameAs: ['https://www.instagram.com/durandev/', 'https://github.com/davidvillard', 'https://www.linkedin.com/in/davidvillard/'],
+  sameAs: ['https://www.instagram.com/durandev_/', 'https://github.com/davidvillard', 'https://www.linkedin.com/in/davidvillard/'],
 }
 
 export default function Page() {

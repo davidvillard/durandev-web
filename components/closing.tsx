@@ -15,7 +15,7 @@ export function SiteFooter() {
       year={2026}
       socials={[
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/davidvillard/', icon: 'linkedin' },
-        { label: 'Instagram', href: 'https://www.instagram.com/durandev/', icon: 'instagram' },
+        { label: 'Instagram', href: 'https://www.instagram.com/durandev_/', icon: 'instagram' },
         { label: 'GitHub', href: 'https://github.com/davidvillard', icon: 'github' },
         { label: 'Email', href: 'mailto:davidvillard6@gmail.com', icon: mailIcon },
       ]}
