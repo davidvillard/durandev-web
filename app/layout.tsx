@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
   },
   manifest: '/site.webmanifest',
+  verification: { google: 'gFf5Yx-WKMqeVB9tL1ZoBHpDn84roE32XKY4qD2je2A' },
   appleWebApp: { title: 'durandev' },
 }
 
