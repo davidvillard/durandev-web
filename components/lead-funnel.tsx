@@ -8,7 +8,7 @@ import { trackEvent } from '@/lib/track'
 import { LEAD_EVENT } from '@/lib/funnel'
 
 const questions = [
-  { key: 'necesidad', title: '¿Qué necesitas?', options: ['Una web nueva', 'Una tienda online', 'Mejorar mi web', 'Salir en Google', 'Automatizar tareas', 'Aún no lo sé'] },
+  { key: 'necesidad', title: '¿Qué necesitas?', options: ['Una web nueva', 'Una tienda online', 'Salir en Google', 'Mantenimiento web', 'Aún no lo sé'] },
   { key: 'plazo', title: '¿Para cuándo lo quieres?', options: ['Lo antes posible', 'En 1–3 meses', 'Solo estoy mirando'] },
   { key: 'zona', title: '¿Dónde está tu negocio?', options: ['En Vigo', 'En Galicia', 'Fuera de Galicia'] },
 ] as const

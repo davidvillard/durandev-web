@@ -86,7 +86,6 @@ export function ProcessStairs() {
           <a className="button" href="#contacto" data-track="puente:proceso">Cuéntame tu proyecto</a>
         </div>
 
-        <p className="todo-note">TODO: definir plazos habituales y condiciones de pago.</p>
       </div>
     </section>
   )

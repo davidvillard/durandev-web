@@ -10,19 +10,18 @@ const mailIcon = (
 export function SiteFooter() {
   return (
     <BeamWordmarkFooter
-      brand="David Villar."
+      brand="durandev."
       company="David Villar Durán"
       year={2026}
       socials={[
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/davidvillard/', icon: 'linkedin' },
-        { label: 'Instagram', href: 'https://www.instagram.com/davidvillardd/', icon: 'instagram' },
-        { label: 'GitHub', href: 'https://www.github.com/davidvillard', icon: 'github' },
+        { label: 'Instagram', href: 'https://www.instagram.com/durandev/', icon: 'instagram' },
+        { label: 'GitHub', href: 'https://github.com/davidvillard', icon: 'github' },
         { label: 'Email', href: 'mailto:davidvillard6@gmail.com', icon: mailIcon },
       ]}
       credits={[
         { lead: 'Desarrollador web freelance en ', label: 'Vigo y Galicia' },
         { label: 'davidvillard6@gmail.com', href: 'mailto:davidvillard6@gmail.com' },
-        { label: 'WhatsApp', href: 'https://wa.me/[TELÉFONO]' },
       ]}
       columns={[
         {
