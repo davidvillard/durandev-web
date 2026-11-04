@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
+import { AnalyticsConsent } from '@/components/analytics-consent'
 import { SITE_URL } from '@/lib/site'
 import './globals.css'
 import './component-styles.css'
@@ -63,7 +64,12 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${inter.variable} ${poppins.variable} antialiased`}>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <Analytics />
+            <AnalyticsConsent />
+          </>
+        )}
       </body>
     </html>
   )

@@ -33,6 +33,7 @@ export default function Page() {
       <ul>
         <li>Resend, para enviarme por correo electrónico los mensajes del formulario.</li>
         <li>Vercel, que aloja la web y ofrece estadísticas de uso sin cookies.</li>
+        <li>Google (Analytics 4), para estadísticas de uso, solo si aceptas las cookies de estadísticas.</li>
       </ul>
       <p>
         Estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, amparados por las garantías del RGPD

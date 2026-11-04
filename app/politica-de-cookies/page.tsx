@@ -6,14 +6,20 @@ export const metadata = { title: 'Política de cookies', alternates: { canonical
 export default function Page() {
   return (
     <LegalPage title="Política de cookies">
-      <h2>Esta web no usa cookies</h2>
+      <h2>Qué cookies usa esta web</h2>
       <p>
-        No instalo cookies propias ni de terceros con fines publicitarios, de seguimiento o de perfilado, por lo que no
-        te muestro un banner de cookies.
+        No instalo cookies publicitarias ni de perfilado. La única cookie opcional es la de estadísticas de Google
+        Analytics 4 (por ejemplo, <code>_ga</code>), que mide las visitas de forma agregada. Solo se activa si pulsas
+        «Aceptar» en el aviso; si pulsas «Rechazar» o no eliges, no se guarda ninguna cookie de Analytics. Puedes cambiar
+        tu elección borrando los datos del sitio en tu navegador y volviendo a entrar.
       </p>
 
       <h2>Qué sí se utiliza</h2>
       <ul>
+        <li>
+          Google Analytics 4 (Google Ireland Limited): estadísticas de uso, solo con tu consentimiento. Tu elección se
+          guarda en el almacenamiento local del navegador.
+        </li>
         <li>
           Estadísticas de Vercel Analytics: miden visitas y eventos de forma agregada y anónima, sin cookies y sin
           identificarte.
