@@ -2,35 +2,26 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { ArrowUpRight, X } from 'lucide-react'
+import { ArrowUp, ArrowUpRight, X } from 'lucide-react'
+import { reply, TOPICS } from '@/lib/chat-knowledge'
 import { trackEvent } from '@/lib/track'
 
 const NAME = 'Orballo'
-
-const questions = [
-  ['¿Qué servicios ofreces?', 'Hago páginas web, tiendas online, SEO y mantenimiento web. Nada más: me centro en eso para hacerlo bien.'],
-  ['¿Cuánto cuesta una web?', 'Depende de lo que necesites: número de páginas, si lleva tienda, funciones extra… Cuéntale tu proyecto a David y te pasa una propuesta con el precio.'],
-  ['¿Cuánto se tarda?', 'Depende del tamaño del proyecto. En la propuesta te indica los plazos antes de empezar.'],
-  ['¿Haces tiendas online?', 'Sí. Monta tiendas online listas para vender y para que puedas gestionar tus productos tú mismo.'],
-  ['¿Me ayudas a salir en Google?', 'Sí. Cuida la estructura, la velocidad y el SEO técnico de tu web, con foco en las búsquedas locales. El alcance exacto se define en la propuesta.'],
-  ['¿Te encargas del mantenimiento?', 'Sí. Mantiene tu web al día y resuelve los cambios que necesites. Cuéntale qué web tienes y lo vemos.'],
-  ['¿Trabajas fuera de Vigo?', 'Sí. Trabaja en toda Galicia y en remoto para cualquier punto de España.'],
-  ['¿Cómo empezamos?', 'Es fácil: responde tres preguntas rápidas en el formulario de abajo y David te contesta en menos de 24 horas, sin compromiso.'],
-] as const
 
 type Message = { id: number; from: 'bot' | 'user'; text: string }
 
 const greeting: Message = {
   id: 0,
   from: 'bot',
-  text: `Hola, soy ${NAME}, el asistente de David. Te resuelvo lo básico en un momento. ¿Qué quieres saber?`,
+  text: `Hola, soy ${NAME}, el asistente de David. Pregúntame lo que quieras sobre webs, tiendas online, SEO o mantenimiento.`,
 }
 
 export function Chatbot() {
   const reduce = useReducedMotion()
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([greeting])
-  const [asked, setAsked] = useState<number[]>([])
+  const [asked, setAsked] = useState<string[]>([])
+  const [draft, setDraft] = useState('')
   const [typing, setTyping] = useState(false)
   const listRef = useRef<HTMLDivElement>(null)
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
@@ -55,20 +46,27 @@ export function Chatbot() {
     setOpen(!open)
   }
 
-  function ask(index: number) {
+  function send(question: string, answer: { topicId: string | null; text: string }) {
     if (typing) return
-    const [q, a] = questions[index]
-    trackEvent('chat_question', { question: index + 1 })
-    setAsked((prev) => [...prev, index])
-    setMessages((prev) => [...prev, { id: nextId.current++, from: 'user', text: q }])
+    trackEvent('chat_message', { topic: answer.topicId ?? 'none' })
+    if (answer.topicId) setAsked((prev) => (prev.includes(answer.topicId!) ? prev : [...prev, answer.topicId!]))
+    setMessages((prev) => [...prev, { id: nextId.current++, from: 'user', text: question }])
     setTyping(true)
     timer.current = setTimeout(() => {
-      setMessages((prev) => [...prev, { id: nextId.current++, from: 'bot', text: a }])
+      setMessages((prev) => [...prev, { id: nextId.current++, from: 'bot', text: answer.text }])
       setTyping(false)
-    }, reduce ? 0 : 900)
+    }, reduce ? 0 : Math.min(500 + answer.text.length * 6, 1300))
   }
 
-  const remaining = questions.map((_, i) => i).filter((i) => !asked.includes(i))
+  function submit(e: React.FormEvent) {
+    e.preventDefault()
+    const text = draft.trim().slice(0, 200)
+    if (!text || typing) return
+    setDraft('')
+    send(text, reply(text))
+  }
+
+  const remaining = TOPICS.filter((t) => t.chip && !asked.includes(t.id))
   const ease = [0.22, 1, 0.36, 1] as const
 
   return (
@@ -116,9 +114,9 @@ export function Chatbot() {
 
             <div className="orb-actions">
               <AnimatePresence initial={false}>
-                {!typing && remaining.slice(0, 3).map((i) => (
+                {!typing && remaining.slice(0, 3).map((t) => (
                   <motion.button
-                    key={i}
+                    key={t.id}
                     type="button"
                     className="orb-chip"
                     layout={!reduce}
@@ -126,12 +124,23 @@ export function Chatbot() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: reduce ? 0 : 0.3, ease }}
-                    onClick={() => ask(i)}
+                    onClick={() => send(t.question, { topicId: t.id, text: t.answer })}
                   >
-                    {questions[i][0]}
+                    {t.question}
                   </motion.button>
                 ))}
               </AnimatePresence>
+              <form className="orb-form" onSubmit={submit}>
+                <input
+                  value={draft}
+                  onChange={(e) => setDraft(e.target.value)}
+                  maxLength={200}
+                  placeholder="Escribe tu pregunta…"
+                  aria-label="Escribe tu pregunta"
+                  autoComplete="off"
+                />
+                <button type="submit" aria-label="Enviar" disabled={!draft.trim() || typing}><ArrowUp size={16} aria-hidden="true" /></button>
+              </form>
               <a className="orb-cta" href="#contacto" data-track="chat:contacto" onClick={() => setOpen(false)}>
                 Cuéntame tu proyecto <ArrowUpRight size={16} aria-hidden="true" />
               </a>

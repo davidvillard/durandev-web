@@ -2127,3 +2127,49 @@ h3,
   background: var(--accent);
   color: #fff;
 }
+
+.orb-form {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+}
+.orb-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font: inherit;
+  font-size: var(--type-small);
+  transition: border-color 0.25s, background 0.25s;
+}
+.orb-form input::placeholder {
+  color: #6e6e73;
+}
+.orb-form input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+.orb-form button {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cta);
+  color: #000;
+  cursor: pointer;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.orb-form button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.orb-form button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}

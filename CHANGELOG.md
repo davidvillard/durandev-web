@@ -8,6 +8,16 @@ Versionado `MAJOR.MINOR.PATCH`:
 
 Cada versión se publica con una etiqueta de git `vX.Y.Z`.
 
+## 1.1.0
+
+Chatbot que entiende lo que se escribe.
+
+- Caja de texto en Orballo: responde sin IA, buscando palabras clave en `lib/chat-knowledge.ts`
+- Entiende tildes, mayúsculas, plurales y erratas pequeñas
+- 15 temas nuevos o ampliados: dominio, qué incluye, pago, tecnología, renovar una web, quién es David
+- Si no sabe, lo dice y remite al formulario; no inventa
+- Evento `chat_message` en analítica (solo el tema, nunca el texto escrito)
+
 ## 1.0.0
 
 Lanzamiento de la web.
