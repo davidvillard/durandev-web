@@ -21,7 +21,7 @@ import * as React from "react"
 
 export const clamp = (v: number, lo: number, hi: number): number => (v < lo ? lo : v > hi ? hi : v)
 
-/** "#3d6bff" / "#36f" → "61, 107, 255". Anything unparseable falls back. */
+/** "#e8650a" / "#36f" → "61, 107, 255". Anything unparseable falls back. */
 export const hexToRgb = (hex: string, fallback: string = "61, 107, 255"): string => {
   const m = /^#?([\da-f]{3}|[\da-f]{6})$/i.exec((hex || "").trim())
   if (!m) return fallback
@@ -294,12 +294,12 @@ export default function BeamWordmarkFooter({
   columns = DEFAULT_COLUMNS,
   onLinkClick,
   cut = 0.14,
-  background = "#02040b",
+  background = "#070707",
   ink = "#eef1f8",
-  muted = "#8a91a6",
-  accent = "#3d6bff",
-  wordTop = "#1d3fa3",
-  wordFoot = "#060b22",
+  muted = "#646464",
+  accent = "#e8650a",
+  wordTop = "#626262",
+  wordFoot = "#141414",
   fontSans = SANS,
   wordWeight = 500,
   animate = true,

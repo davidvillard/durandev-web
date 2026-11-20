@@ -29,7 +29,7 @@ export function SpecularButton({
   radius = 9,
   tint = '#ffffff',
   tintOpacity = 0.04,
-  textColor = '#101317',
+  textColor = '#121110',
   lineColor = 'rgba(255,154,77,.9)',
   baseColor = '#ff7a1a',
   intensity = 0.8,

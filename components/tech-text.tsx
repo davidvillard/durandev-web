@@ -58,7 +58,7 @@ export function TechText({ text }: { text: string }) {
             text={text}
             {...font}
             color="currentColor"
-            accentColor="#f0f1ed"
+            accentColor="#f5f1ea"
             reach={120}
             labels={false}
             selection={false}

@@ -42,12 +42,12 @@ export function SiteFooter() {
           ],
         },
       ]}
-      background="#0c0f11"
-      ink="#f0f1ed"
-      muted="#8b9490"
-      accent="#5b8cff"
-      wordTop="#2347a8"
-      wordFoot="#070b1a"
+      background="#050505"
+      ink="#f5f5f7"
+      muted="#5f5f5f"
+      accent="#ff7a1a"
+      wordTop="#656565"
+      wordFoot="#101010"
       fontSans="var(--font-inter), Arial, sans-serif"
       wordWeight={700}
     />
