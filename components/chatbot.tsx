@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ArrowUp, ArrowUpRight, X } from 'lucide-react'
-import { reply, TOPICS } from '@/lib/chat-knowledge'
+import { reply, TOPICS, type Memory } from '@/lib/chat-knowledge'
 import { trackEvent } from '@/lib/track'
 
 const NAME = 'Orballo'
@@ -26,6 +26,7 @@ export function Chatbot() {
   const listRef = useRef<HTMLDivElement>(null)
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const nextId = useRef(1)
+  const memory = useRef<Memory>({ last: null, expanded: [] })
 
   useEffect(() => () => clearTimeout(timer.current), [])
 
@@ -49,6 +50,11 @@ export function Chatbot() {
   function send(question: string, answer: { topicId: string | null; text: string }) {
     if (typing) return
     trackEvent('chat_message', { topic: answer.topicId ?? 'none' })
+    const topic = TOPICS.find((t) => t.id === answer.topicId)
+    if (topic) {
+      memory.current.last = topic.id
+      if (answer.text === topic.more) memory.current.expanded.push(topic.id)
+    }
     if (answer.topicId) setAsked((prev) => (prev.includes(answer.topicId!) ? prev : [...prev, answer.topicId!]))
     setMessages((prev) => [...prev, { id: nextId.current++, from: 'user', text: question }])
     setTyping(true)
@@ -63,7 +69,7 @@ export function Chatbot() {
     const text = draft.trim().slice(0, 200)
     if (!text || typing) return
     setDraft('')
-    send(text, reply(text))
+    send(text, reply(text, memory.current))
   }
 
   const remaining = TOPICS.filter((t) => t.chip && !asked.includes(t.id))

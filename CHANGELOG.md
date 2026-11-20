@@ -8,6 +8,17 @@ Versionado `MAJOR.MINOR.PATCH`:
 
 Cada versión se publica con una etiqueta de git `vX.Y.Z`.
 
+## 1.2.0
+
+Chatbot con memoria e intención.
+
+- Recuerda de qué se hablaba: "¿cómo?", "cuéntame más" o "por qué" amplían el último tema; a la tercera remite al formulario
+- Distingue preguntar de necesitar: "necesito una tienda de bicis" responde con una propuesta de siguiente paso y repite lo que ha pedido
+- Charla básica: "qué tal", saludos, "gracias", "vale"
+- Respuestas en tercera persona (habla de David, no como David) y tema nuevo "¿Haces páginas web?"
+- Quita la mención a Odoo de la sección "Sobre mí" (ya no se ofrece)
+- Corrige que "cuánto se tarda en hacer una web" se tomara como pregunta sobre webs
+
 ## 1.1.0
 
 Chatbot que entiende lo que se escribe.
