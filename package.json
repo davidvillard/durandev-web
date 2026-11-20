@@ -1,6 +1,6 @@
 {
-  "name": "my-project",
-  "version": "0.1.0",
+  "name": "durandev-web",
+  "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@10.16.0",
   "scripts": {
